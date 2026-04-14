@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz - App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+      @theme {
+
+        /*FONT FAMILY*/
+        --font-rubik : "Rubik", sans-serif ;
+        
+        /*COLORS*/
+        /*White*/
+        --color-white : #FFFFFF ;
+        /*Black*/
+        --color-black : #000000 ;
+        /*Grey*/
+        --color-Grey-500 : #626C7F ;
+        --color-Grey-50 : #F4F6FA ;
+        /*Blue*/
+        --color-Blue-950 : #2D3949 ;
+        --color-Blue-900 : #313E51 ;
+        --color-Blue-850 : #3B4D66 ;
+        --color-Blue-500 : #306AFF ;
+        --color-Blue-300 : #ABC1E1 ;
+        --color-Blue-100 : #EDF1F9 ;
+        --color-Blue-50 : #EBF0FF ;
+        /*Green*/
+        --color-Green-500 : #2FD887 ;
+        --color-Green-100 : #E0FDEF ;
+        /*Purple*/
+        --color-purple-600 : #A729F5 ;
+        --color-purple-100 : #F6E7FF ;
+        /*Orange*/
+        --color-Orange-400 : #FF7E35 ;
+        --color-Orange-50 : #FFF5ED ;
+        /*Red*/
+        --color-Red-500 : #EE5454 ;
+
+        /*Spacing*/
+        --spacing-100 : 8px ;
+        --spacing-200 : 16px ;
+        --spacing-300 : 24px ;
+        --spacing-400 : 32px ;
+        --spacing-500 : 40px ;
+        --spacing-600 : 48px ;
+        --spacing-800 : 64px ;
+        --spacing-1600 : 128px ;
+        --spacing-1800 : 144px ;
+        --spacing-2300 : 184px ;
+
+        /*Typography*/
+        --text-4xl : 36px ;
+        --text-4xl-line-height : 1.2 ;
+        --text-2xl : 24px ;
+        --text-2xl-line-height : 1.5 ;
+        --text-xl : 20px ;
+        --text-xl-line-height : 1.5 ;
+        --text-lg: 18px ;
+        --text-lg-line-height: 1 ;
+        --text-sm: 14px ;
+        --text-sm-line-height: 1.5 ;
+        
+      }
+
+      .preset-1 {@apply text-[114px] leading-none font-medium font-rubik }
+      .preset-2-medium {@apply text-[64px] leading-none font-medium font-rubik}
+      .preset-2-light {@apply text-[64px] leading-none font-light font-rubik}
+      .preset-3 {@apply text-4xl font-medium font-rubik}
+      .preset-4 {@apply text-[28px] leading-none font-medium font-rubik}
+      .preset-5-medium {@apply text-2xl font-medium font-rubik}
+      .preset-5-regular {@apply text-2xl font-normal font-rubik}
+      .preset-6 {@apply text-xl font-normal italic font-rubik}
+      /*Mobile*/
+      .preset-2-medium-m {@apply text-[40px] leading-none font-medium font-rubik}
+      .preset-2-light-m {@apply text-[40px] leading-none font-light font-rubik}
+      .preset-3-m {@apply text-xl font-medium font-rubik}
+      .preset-4-m {@apply text-lg font-medium font-rubik}
+      .preset-5-m {@apply text-lg font-normal italic font-rubik}
+       
+      
+
+      /*Button with Icon*/
+      .btn-icon {@apply w-full flex items-center gap-6 p-4 md:p-6 lg:p-8 bg-Blue-850 rounded-3xl  transition ring-2 ring-transparent hover:ring-purple-500 cursor-pointer; }
+
+      
+    
+    </style>
+
+</head>
+
+<body class="bg-Blue-900">
+
+  <!--Start Screen-->
+  <div id="start-screen" class="min-h-screen flex flex-col px-6 py-4 md:px-16 md:py-6 lg:px-24 lg:py-8 relative">
+    <!-- Image de fond -->
+    <img 
+      src="imgs/Background.svg" 
+      alt="" 
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+
+    <header class="py-4 px-6  flex justify-end mb-0 relative z-10">
+      <button class="flex gap-4 ml-auto lg:px-[140px]">
+        <img src="imgs/fluent_weather-sunny-16-regular.svg" alt="Sunny">
+        <img src="imgs/Toggle Background.svg" alt="Toggle">
+        <img src="imgs/fluent_weather-moon-16-regular.svg" alt="Moon">
+      </button>
+    </header>
+
+  <main class="px-6 pt-8 lg:flex lg:justify-center lg:gap-[128px] lg:justify-between gap-10 relative z-10 lg:mt-[-40px]">
+    <div class="mb-10 md:mb-16">
+      <div>
+        <p class="preset-2-light-m text-white mb-4 md:preset-2-light ">Welcome to the</p>
+        <h1 class="preset-2-medium-m text-white md:preset-2-medium">Frontend Quiz!</h1>
+      </div>
+      <p class="preset-5-m text-Blue-300 mt-4 md:preset-6">Pick a subject to get started.</p>
+    </div>
+
+    <div class="grid gap-4 w-full max-w-[564px]">
+
+     <button class="btn-icon"  onclick="startQuiz('html')">
+      <div class="w-[40px] h-[40px] md:w-[56px] md:h-[56px] rounded-md bg-Orange-50 flex justify-center items-center">
+        <img src="imgs/fluent_code-16-regular (mobile).svg" class="block md:hidden" alt="HTML">
+        <img src="imgs/fluent_code-16-regular.svg" class="hidden md:block" alt="HTML">
+      </div>
+      <h3 class="preset-4-m text-white md:preset-4">HTML</h3>
+     </button>
+    
+     <button class="btn-icon" onclick="startQuiz('css')">
+      <div class="w-[40px] h-[40px] md:w-[56px] md:h-[56px] rounded-md bg-Green-100 flex justify-center items-center">
+        <img src="imgs/fluent_paint-brush-16-regular (mobile).svg" class="block md:hidden" alt="CSS">
+        <img src="imgs/fluent_paint-brush-16-regular.svg" class="hidden md:block" alt="CSS">
+      </div>
+      <h3 class="preset-4-m text-white md:preset-4">CSS</h3>
+     </button>
+
+     <button class="btn-icon" onclick="startQuiz('javascript')">
+      <div class="w-[40px] h-[40px] md:w-[56px] md:h-[56px] rounded-md bg-Blue-50 flex justify-center items-center">
+        <img src="imgs/fluent_javascript-16-regular(mobile).svg" class="block md:hidden" alt="JS">
+        <img src="imgs/Vector.svg" class="hidden md:block" alt="JSL">
+      </div>
+      <h3 class="preset-4-m text-white md:preset-4">Javascript</h3>
+     </button>
+
+     <button class="btn-icon" onclick="startQuiz('accessibility')">
+      <div class="w-[40px] h-[40px] md:w-[56px] md:h-[56px] rounded-md bg-purple-100 flex justify-center items-center">
+        <img src="imgs/fluent_accessibility-16-regular (mobile).svg" class="block md:hidden" alt="Accessibility">
+        <img src="imgs/fluent_accessibility-16-regular.svg" class="hidden md:block" alt="Accessibility">
+      </div>
+      <h3 class="preset-4-m text-white md:preset-4">Accessibility</h3>
+     </button>
+
+    </div>
+
+  </main>
+  </div>
+
+  <!--Question Screen-->
+
+  <div id="question-screen" class="hidden min-h-screen flex-col px-6 py-6 md:px-16 md:py-10 lg:px-[184px] lg:py-[80px] relative">
+
+    <!-- Image de fond -->
+    <img 
+      src="imgs/Background.svg" 
+      alt="" 
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+
+    <!-- HEADER -->
+    <header class="flex justify-between items-center mb-10 lg:mb-16 relative z-10">
+      
+      <!-- Sujet actif (icône + nom) -->
+      <div class="flex items-center gap-4">
+        <img id="subject-icon" src="" alt="" class="w-10 h-10 lg:w-14 lg:h-14">
+        <span id="subject-name" class="preset-4-m lg:preset-4 text-white"></span>
+      </div>
+
+      <!-- Toggle dark/light -->
+      <div class="flex items-center gap-3">
+        <img src="imgs/fluent_weather-sunny-16-regular.svg" alt="Light mode" class="w-5 h-5">
+        <img src="imgs/Toggle Background.svg" alt="Theme toggle" id="theme-toggle-2" class="w-12 h-6 cursor-pointer">
+        <img src="imgs/fluent_weather-moon-16-regular.svg" alt="Dark mode" class="w-5 h-5">
+      </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-0 relative z-10">
+
+      <!-- COLONNE GAUCHE : Question + Progress bar -->
+      <div class="flex flex-col justify-between lg:w-[465px] lg:h-[388px]">
+        
+        <!-- Numéro de question -->
+        <p id="question-number" class="preset-6 text-Blue-300 mb-4">Question 1 of 10</p>
+        
+        <!-- Texte de la question -->
+        <h2 id="question-text" class="preset-3-m lg:preset-3 text-white mb-8 lg:mb-0"></h2>
+
+        <!-- Progress bar -->
+        <div class="w-full bg-Blue-850 h-4 rounded-full p-1">
+          <div id="progress-bar" class="bg-purple-600 h-full rounded-full transition-all duration-500" style="width: 10%"></div>
+        </div>
+
+      </div>
+
+      <!-- COLONNE DROITE : Options + Bouton -->
+      <div class="flex flex-col gap-3 lg:gap-4 lg:w-[564px]">
+
+        <!-- Option A -->
+        <button id="opt-0" onclick="selectOption(0)" class="option-btn flex items-center gap-4 lg:gap-8 bg-Blue-950 rounded-xl lg:rounded-2xl p-3 lg:p-5 cursor-pointer transition-all duration-200 w-full border-2 border-transparent">
+          <span class="option-letter w-10 h-10 lg:w-14 lg:h-14 rounded-lg bg-Grey-50 flex items-center justify-center preset-4-m lg:preset-4 text-Grey-500 flex-shrink-0">A</span>
+          <span id="opt-text-0" class="preset-4-m lg:preset-4 text-white text-left"></span>
+          <img id="opt-icon-0" src="" alt="" class="w-8 h-8 ml-auto hidden">
+        </button>
+
+        <!-- Option B -->
+        <button id="opt-1" onclick="selectOption(1)" class="option-btn flex items-center gap-4 lg:gap-8 bg-Blue-950 rounded-xl lg:rounded-2xl p-3 lg:p-5 cursor-pointer transition-all duration-200 w-full border-2 border-transparent">
+          <span class="option-letter w-10 h-10 lg:w-14 lg:h-14 rounded-lg bg-Grey-50 flex items-center justify-center preset-4-m lg:preset-4 text-Grey-500 flex-shrink-0">B</span>
+          <span id="opt-text-1" class="preset-4-m lg:preset-4 text-white text-left"></span>
+          <img id="opt-icon-1" src="" alt="" class="w-8 h-8 ml-auto hidden">
+        </button>
+
+        <!-- Option C -->
+        <button id="opt-2" onclick="selectOption(2)" class="option-btn flex items-center gap-4 lg:gap-8 bg-Blue-950 rounded-xl lg:rounded-2xl p-3 lg:p-5 cursor-pointer transition-all duration-200 w-full border-2 border-transparent">
+          <span class="option-letter w-10 h-10 lg:w-14 lg:h-14 rounded-lg bg-Grey-50 flex items-center justify-center preset-4-m lg:preset-4 text-Grey-500 flex-shrink-0">C</span>
+          <span id="opt-text-2" class="preset-4-m lg:preset-4 text-white text-left"></span>
+          <img id="opt-icon-2" src="" alt="" class="w-8 h-8 ml-auto hidden">
+        </button>
+
+        <!-- Option D -->
+        <button id="opt-3" onclick="selectOption(3)" class="option-btn flex items-center gap-4 lg:gap-8 bg-Blue-950 rounded-xl lg:rounded-2xl p-3 lg:p-5 cursor-pointer transition-all duration-200 w-full border-2 border-transparent">
+          <span class="option-letter w-10 h-10 lg:w-14 lg:h-14 rounded-lg bg-Grey-50 flex items-center justify-center preset-4-m lg:preset-4 text-Grey-500 flex-shrink-0">D</span>
+          <span id="opt-text-3" class="preset-4-m lg:preset-4 text-white text-left"></span>
+          <img id="opt-icon-3" src="" alt="" class="w-8 h-8 ml-auto hidden">
+        </button>
+
+        <!-- Bouton Submit -->
+        <button id="submit-btn" onclick="submitAnswer()" class="w-full bg-purple-600 cursor-pointer hover:opacity-80 transition-all duration-200 rounded-xl lg:rounded-2xl p-5 preset-4-m lg:preset-4 text-white mt-2">
+          Submit Answer
+        </button>
+
+        <!-- Message d'erreur -->
+        <div id="error-msg" class="hidden flex items-center justify-center gap-2 mt-1">
+          <img src="imgs/fluent_dismiss-circle-16-regular.svg" alt="error" class="w-6 h-6">
+          <p class="preset-4-m lg:preset-4 text-Red-500">Please select an answer</p>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!--Score Screen-->
+
+  <div id="score-screen" class="hidden min-h-screen flex-col px-6 py-6 md:px-16 md:py-10 lg:px-[184px] lg:py-[80px] relative">
+
+    <!-- Image de fond -->
+    <img 
+      src="imgs/Background.svg" 
+      alt="" 
+      class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+
+    <!-- HEADER -->
+    <header class="flex justify-between items-center mb-10 lg:mb-16 relative z-10">
+      
+      <!-- Sujet actif (icône + nom) -->
+      <div class="flex items-center gap-4">
+        <img id="score-subject-icon" src="" alt="" class="w-10 h-10 lg:w-14 lg:h-14">
+        <span id="score-subject-name" class="preset-4-m lg:preset-4 text-white"></span>
+      </div>
+
+      <!-- Toggle dark/light -->
+      <div class="flex items-center gap-3">
+        <img src="imgs/fluent_weather-sunny-16-regular.svg" alt="Light mode" class="w-5 h-5">
+        <img src="imgs/Toggle Background.svg" alt="Theme toggle" id="theme-toggle-3" class="w-12 h-6 cursor-pointer">
+        <img src="imgs/fluent_weather-moon-16-regular.svg" alt="Dark mode" class="w-5 h-5">
+      </div>
+
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 lg:gap-0 relative z-10">
+
+      <!-- COLONNE GAUCHE : Texte -->
+      <div class="lg:w-[465px]">
+        <p class="preset-2-light-m lg:preset-2-light text-white">Quiz completed</p>
+        <h2 class="preset-2-medium-m lg:preset-2-medium text-white">You scored...</h2>
+      </div>
+
+      <!-- COLONNE DROITE : Card score + Bouton -->
+      <div class="flex flex-col gap-4 lg:gap-6 lg:w-[564px]">
+
+        <!-- Card score -->
+        <div class="bg-Blue-950 rounded-xl lg:rounded-2xl p-8 lg:p-12 flex flex-col items-center gap-4">
+          
+          <!-- Icône + nom du sujet -->
+          <div class="flex items-center gap-4">
+            <img id="score-card-icon" src="" alt="" class="w-10 h-10 lg:w-14 lg:h-14">
+            <span id="score-card-name" class="preset-4-m lg:preset-4 text-white"></span>
+          </div>
+
+          <!-- Le score -->
+          <p id="score-number" class="preset-1 text-white">0</p>
+          <p id="score-total" class="preset-5-regular text-Blue-300">out of 10</p>
+
+        </div>
+
+        <!-- Bouton Play Again -->
+        <button 
+          onclick="playAgain()"
+          class="w-full bg-purple-600  hover:opacity-80 transition-all duration-200 rounded-xl lg:rounded-2xl p-5 preset-4-m lg:preset-4 text-white cursor-pointer">
+          Play Again
+        </button>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
