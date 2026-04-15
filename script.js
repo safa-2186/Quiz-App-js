@@ -420,15 +420,19 @@ function submitAnswer() {
   
   if (currentQuestion.options[selectedOptionIndex] === correctAnswer) {
     score++;
-  }
+  
 
   
-  const submitBtn = document.getElementById('submit-btn');
-  submitBtn.textContent = 'Next Question';
-  submitBtn.onclick = nextQuestion;
+   const submitBtn = document.getElementById('submit-btn');
+   submitBtn.textContent = 'Next Question';
+   submitBtn.onclick = nextQuestion;
+  } else{
+    setTimeout(()=> {
+     showScore();
+    },1000);
+  }
+
 }
-
-
 // Next question
 
 function nextQuestion() {
