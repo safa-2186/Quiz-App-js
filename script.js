@@ -426,10 +426,10 @@ function submitAnswer() {
    const submitBtn = document.getElementById('submit-btn');
    submitBtn.textContent = 'Next Question';
    submitBtn.onclick = nextQuestion;
+   
   } else{
-    setTimeout(()=> {
      showScore();
-    },1000);
+    
   }
 
 }
